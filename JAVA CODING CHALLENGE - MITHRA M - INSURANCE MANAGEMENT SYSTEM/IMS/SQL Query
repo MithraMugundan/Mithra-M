@@ -1,0 +1,128 @@
+mysql> use testdb;
+Database changed
+mysql> CREATE TABLE policy (
+    ->     policyId INT PRIMARY KEY,
+    ->     policyName VARCHAR(255) NOT NULL,
+    ->     policyType VARCHAR(100) NOT NULL,
+    ->     premium DOUBLE NOT NULL
+    -> );
+Query OK, 0 rows affected (2.02 sec)
+
+mysql>
+mysql> INSERT INTO policy (policyId, policyName, policyType, premium) VALUES
+    -> (1, 'Health Insurance', 'Health', 5000.00),
+    -> (2, 'Life Insurance', 'Life', 10000.00),
+    -> (3, 'Car Insurance', 'Vehicle', 3000.00),
+    -> (4, 'Home Insurance', 'Property', 4500.00),
+    -> (5, 'Travel Insurance', 'Travel', 1500.00);
+Query OK, 5 rows affected (0.26 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from policy;
++----------+------------------+------------+---------+
+| policyId | policyName       | policyType | premium |
++----------+------------------+------------+---------+
+|        1 | Health Insurance | Health     |    5000 |
+|        2 | Life Insurance   | Life       |   10000 |
+|        3 | Car Insurance    | Vehicle    |    3000 |
+|        4 | Home Insurance   | Property   |    4500 |
+|        5 | Travel Insurance | Travel     |    1500 |
++----------+------------------+------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> ALTER TABLE policy CHANGE COLUMN premium premiumAmount DOUBLE NOT NULL;
+Query OK, 0 rows affected (0.27 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from policy;
++----------+------------------+------------+---------------+
+| policyId | policyName       | policyType | premiumAmount |
++----------+------------------+------------+---------------+
+|        1 | Health Insurance | Health     |          5000 |
+|        2 | Life Insurance   | Life       |         10000 |
+|        3 | Car Insurance    | Vehicle    |          3000 |
+|        4 | Home Insurance   | Property   |          4500 |
+|        5 | Travel Insurance | Travel     |          1500 |
++----------+------------------+------------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from policy;
++----------+-------------------+------------+---------------+
+| policyId | policyName        | policyType | premiumAmount |
++----------+-------------------+------------+---------------+
+|        1 | Health Insurance  | Health     |          5000 |
+|        2 | Life Insurance    | Life       |         10000 |
+|        3 | Car Insurance     | Vehicle    |          3000 |
+|        4 | Home Insurance    | Property   |          4500 |
+|        5 | Travel Insurance  | Travel     |          1500 |
+|        6 | Illness Insurance | Health     |         12000 |
++----------+-------------------+------------+---------------+
+6 rows in set (0.00 sec)
+
+CREATE TABLE user (
+    userId INT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    role VARCHAR(30) NOT NULL
+);
+
+INSERT INTO user (userId, username, password, role) VALUES
+(1, 'arvind_srinivasan', 'password123', 'Admin'),
+(2, 'priya_krishnan', 'securePass456', 'Client'),
+(3, 'karthik_raghavan', 'adminPass789', 'Admin'),
+(4, 'lakshmi_pillai', 'clientPass001', 'Client'),
+(5, 'vishnu_kumar', 'helloWorld2024', 'Client');
+
+mysql> CREATE TABLE client (
+    ->     clientId INT PRIMARY KEY,
+    ->     clientName VARCHAR(100),
+    ->     contactInfo VARCHAR(255),
+    ->     policyId INT
+    -> );
+Query OK, 0 rows affected (0.21 sec)
+
+mysql> INSERT INTO client (clientId, clientName, contactInfo, policyId) VALUES
+    -> (1, 'Rajesh Kumar', '9876543210, rajesh.kumar@email.com', 101),
+    -> (2, 'Priya Ramesh', '9998887777, priya.ramesh@email.com', 102),
+    -> (3, 'Suresh Babu', '9123456789, suresh.babu@email.com', 103),
+    -> (4, 'Anjali Iyer', '9345678901, anjali.iyer@email.com', 104),
+    -> (5, 'Vijay Raghavan', '9678901234, vijay.raghavan@email.com', 105);
+Query OK, 5 rows affected (0.10 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from cleint;
+ERROR 1146 (42S02): Table 'testdb.cleint' doesn't exist
+mysql> select * from client;
++----------+----------------+--------------------------------------+----------+
+| clientId | clientName     | contactInfo                          | policyId |
++----------+----------------+--------------------------------------+----------+
+|        1 | Rajesh Kumar   | 9876543210, rajesh.kumar@email.com   |      101 |
+|        2 | Priya Ramesh   | 9998887777, priya.ramesh@email.com   |      102 |
+|        3 | Suresh Babu    | 9123456789, suresh.babu@email.com    |      103 |
+|        4 | Anjali Iyer    | 9345678901, anjali.iyer@email.com    |      104 |
+|        5 | Vijay Raghavan | 9678901234, vijay.raghavan@email.com |      105 |
++----------+----------------+--------------------------------------+----------+
+5 rows in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
